@@ -22,7 +22,21 @@ namespace Stats
 		{
 			return Math.Sqrt (variance (array));
 		}
-
+		public static double cov(double[] array1, double[] array2)
+		{
+			if (array1.Length != array2.Length)
+			{
+				throw new System.ArgumentException ("Arrays must be of equal size");
+			}
+			if (array1.Length <= 1) 
+			{
+				return double.NaN;
+			}
+			double m1 = mean (array1);
+			double m2 = mean (array2);
+			double res = array1.Zip(array2, (a1, a2) => (a1 - m1) * (a2 - m2)).Sum();
+			return res;
+		}
 	}
 }
 

@@ -121,5 +121,46 @@ namespace Stats
 		}
 
 	}
+	[TestFixture]
+	public class TestCov
+	{
+		[Test]
+		public void TestUnequalArraySizesRaisesException()
+		{
+			double[] array1 = { 1, 2 };
+			double[] array2 = { 3, 4, 5 };
+			Assert.Throws (typeof(System.ArgumentException), delegate {
+				BasicStats.cov(array1, array2);
+			});
+		}
+		[Test]
+		public void TestSize0ArraysReturnsNaN()
+		{
+			double[] array1 = { };
+			double[] array2 = { };
+			double expected = double.NaN;
+			double actual = BasicStats.cov (array1, array2);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize1ArraysReturnsNaN()
+		{
+			double[] array1 = { 5 };
+			double[] array2 = { 6 };
+			double expected = double.NaN;
+			double actual = BasicStats.cov (array1, array2);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize2Arrays()
+		{
+			double[] array1 = { 1, 2 };
+			double[] array2 = { 1, 4 };
+			double expected = 1.5;
+			double actual = BasicStats.cov (array1, array2);
+			Assert.AreEqual (expected, actual);
+		}
+
+	}
 }
 
