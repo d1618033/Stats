@@ -50,6 +50,16 @@ namespace Stats
 			}
 			return cov(array1, array2) / (std(array1) * std(array2));
 		}
+		public static IList<int> rank(IList<double> array)
+		{
+			return array
+				.Select ((a, i) => new {Elem=a, Index=i})
+				.OrderBy (a => a.Elem)
+				.Select ((a, i) => new {Rank=i+1, Elem=a.Elem, Index=a.Index})
+				.OrderBy (a => a.Index)
+				.Select (a => a.Rank)
+				.ToArray();
+		}
 	}
 }
 

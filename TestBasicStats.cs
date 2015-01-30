@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace Stats
 {
@@ -218,6 +219,90 @@ namespace Stats
 			double expected = 0.4338891405782417;
 			double actual = BasicStats.pearson (array1, array2);
 			Assert.AreEqual (expected, actual, 1e-15);
+		}
+	}
+	[TestFixture]
+	public class TestRank
+	{
+		[Test]
+		public void TestSize0ReturnsSize0()
+		{
+			double[] array = { };
+			int expectedLength = 0;
+			int actualLength = BasicStats.rank (array).Count;
+			Assert.AreEqual (expectedLength, actualLength);
+		}
+		[Test]
+		public void TestSize1Returns1()
+		{
+			double[] array = { 17 };
+			int[] expected = { 1 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize2Decreasing()
+		{
+			double[] array = { 17 , 5};
+			int[] expected = { 2, 1 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize2Increasing()
+		{
+			double[] array = { 5, 17 };
+			int[] expected = { 1, 2 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize3Increasing()
+		{
+			double[] array = { 5, 17, 21 };
+			int[] expected = { 1, 2, 3 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize3Decreasing()
+		{
+			double[] array = { 21, 17, 5 };
+			int[] expected = { 3, 2, 1 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize3Perms1()
+		{
+			double[] array = { 5, 21, 17 };
+			int[] expected = { 1, 3, 2 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize3Perms2()
+		{
+			double[] array = { 21, 5, 17 };
+			int[] expected = { 3, 1, 2 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize3Perms3()
+		{
+			double[] array = { 17, 21, 5 };
+			int[] expected = { 2, 3, 1 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize3Perms4()
+		{
+			double[] array = { 17, 5, 21 };
+			int[] expected = { 2, 1, 3 };
+			IList<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
 		}
 	}
 }
