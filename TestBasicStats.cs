@@ -46,6 +46,42 @@ namespace Stats
 			double actual = BasicStats.mean (x);
 			Assert.AreEqual (expected, actual);
 		}
+	}
+	[TestFixture]
+	public class TestStd
+	{
+		[Test]
+		public void TestStdOfEmptyReturnsNaN()
+		{
+			double[] x = { };
+			double expected = double.NaN;
+			double actual = BasicStats.std (x);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestStdOf1ElemReturnsNaN()
+		{
+			double[] x = {5};
+			double expected = double.NaN;
+			double actual = BasicStats.std (x);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestStdOf2Elem()
+		{
+			double[] x = {5, 7};
+			double expected = Math.Sqrt(2);
+			double actual = BasicStats.std (x);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestStdOf10Elem()
+		{
+			double[] x = {5.0, 7.0, 3.0, 2.0, 7.0, 8.0, 9.0, 10.0, 10.0, 7.0};
+			double expected = 2.7406406388125957;
+			double actual = BasicStats.std (x);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
 
 	}
 }

@@ -1,19 +1,26 @@
 ﻿using System;
+using System.Linq;
 
 namespace Stats
 {
-	public class BasicStats
+	public static class BasicStats
 	{
-		public static double sum(double[] x)
+		public static double mean(double[] array)
 		{
-			double s = 0;
-			for (int i=0; i < x.Length; i++)
-				s += x[i];
-			return s;
+			return array.Sum() / array.Length;
 		}
-		public static double mean(double[] x)
+		private static double variance(double[] array)
 		{
-			return sum(x) / x.Length;
+			if (array.Length == 0) 
+			{
+				return double.NaN;
+			}
+			double m = mean (array);
+			return array.Sum (a => (a-m) * (a-m)) / (array.Length - 1);
+		}
+		public static double std(double[] array)
+		{
+			return Math.Sqrt (variance (array));
 		}
 	}
 }
