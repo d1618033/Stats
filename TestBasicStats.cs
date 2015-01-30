@@ -171,5 +171,54 @@ namespace Stats
 		}
 
 	}
+	[TestFixture]
+	public class TestPearson
+	{
+		[Test]
+		public void TestUnequalArraySizesRaisesException()
+		{
+			double[] array1 = { 1, 2 };
+			double[] array2 = { 3, 4, 5 };
+			Assert.Throws (typeof(System.ArgumentException), delegate {
+				BasicStats.pearson(array1, array2);
+			});
+		}
+		[Test]
+		public void TestSize0ArraysReturnsNaN()
+		{
+			double[] array1 = { };
+			double[] array2 = { };
+			double expected = double.NaN;
+			double actual = BasicStats.pearson (array1, array2);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize1ArraysReturnsNaN()
+		{
+			double[] array1 = { 5 };
+			double[] array2 = { 6 };
+			double expected = double.NaN;
+			double actual = BasicStats.pearson (array1, array2);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize2Arrays()
+		{
+			double[] array1 = { 1, 2 };
+			double[] array2 = { 1, 4 };
+			double expected = 1;
+			double actual = BasicStats.pearson (array1, array2);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+		[Test]
+		public void TestSize10Arrays()
+		{
+			double[] array1 = { 3.0, 9.0, 8.0, 9.0, 4.0, 3.0, 1.0, 10.0, 5.0, 1.0 };
+			double[] array2 = { 1.0, 8.0, 9.0, 10.0, 7.0, 7.0, 5.0, 7.0, 6.0, 9.0 };
+			double expected = 0.4338891405782417;
+			double actual = BasicStats.pearson (array1, array2);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+	}
 }
 

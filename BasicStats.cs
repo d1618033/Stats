@@ -38,6 +38,18 @@ namespace Stats
 			double res = array1.Zip(array2, (a1, a2) => (a1 - m1) * (a2 - m2)).Sum() / (array1.Count() - 1);
 			return res;
 		}
+		public static double pearson(ICollection<double> array1, ICollection<double> array2)
+		{
+			if (array1.Count() != array2.Count())
+			{
+				throw new System.ArgumentException ("Arrays must be of equal size");
+			}
+			if (array1.Count() <= 1) 
+			{
+				return double.NaN;
+			}
+			return cov(array1, array2) / (std(array1) * std(array2));
+		}
 	}
 }
 
