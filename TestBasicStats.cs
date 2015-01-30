@@ -305,5 +305,65 @@ namespace Stats
 			Assert.AreEqual (expected, actual);
 		}
 	}
+	[TestFixture]
+	public class TestSpearman
+	{
+		[Test]
+		public void TestSize0ReturnsNaN()
+		{
+			double[] array = { };
+			double expected = double.NaN;
+			double actual = BasicStats.spearman(array);
+			Assert.AreEqual(actual, expected);
+		}
+		[Test]
+		public void TestSize1Returns1()
+		{
+			double[] array = { 17 };
+			double expected = 1;
+			double actual = BasicStats.spearman (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestSize2DecreasingReturnsMinus1()
+		{
+			double[] array = { 17 , 5};
+			double expected = -1;
+			double actual = BasicStats.spearman (array);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+		[Test]
+		public void TestSize2IncreasingReturns1()
+		{
+			double[] array = { 5, 17 };
+			double expected = 1;
+			double actual = BasicStats.spearman (array);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+		[Test]
+		public void TestSize3IncreasingReturns1()
+		{
+			double[] array = { 5, 17, 21 };
+			double expected = 1;
+			double actual = BasicStats.spearman (array);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+		[Test]
+		public void TestSize3DecreasingReturnsMinus1()
+		{
+			double[] array = { 21, 17, 5 };
+			double expected = -1;
+			double actual = BasicStats.spearman (array);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+		[Test]
+		public void TestSize3General()
+		{
+			double[] array = { 5, 21, 17 };
+			double expected = 0.5;
+			double actual = BasicStats.spearman (array);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+	}
 }
 
