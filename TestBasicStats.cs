@@ -160,6 +160,15 @@ namespace Stats
 			double actual = BasicStats.cov (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
+		[Test]
+		public void TestSize10Arrays()
+		{
+			double[] array1 = { 3.0, 9.0, 8.0, 9.0, 4.0, 3.0, 1.0, 10.0, 5.0, 1.0 };
+			double[] array2 = { 1.0, 8.0, 9.0, 10.0, 7.0, 7.0, 5.0, 7.0, 6.0, 9.0 };
+			double expected = 3.8111111111111122;
+			double actual = BasicStats.cov (array1, array2);
+			Assert.AreEqual (expected, actual);
+		}
 
 	}
 }
