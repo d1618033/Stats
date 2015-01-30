@@ -9,7 +9,7 @@ namespace Stats
 		{
 			return array.Sum() / array.Length;
 		}
-		private static double variance(double[] array)
+		public static double variance(double[] array)
 		{
 			if (array.Length == 0) 
 			{
@@ -22,6 +22,7 @@ namespace Stats
 		{
 			return Math.Sqrt (variance (array));
 		}
+
 	}
 }
 
