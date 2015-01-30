@@ -237,7 +237,7 @@ namespace Stats
 		{
 			double[] array = { 17 };
 			int[] expected = { 1 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -245,7 +245,7 @@ namespace Stats
 		{
 			double[] array = { 17 , 5};
 			int[] expected = { 2, 1 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -253,7 +253,7 @@ namespace Stats
 		{
 			double[] array = { 5, 17 };
 			int[] expected = { 1, 2 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -261,7 +261,7 @@ namespace Stats
 		{
 			double[] array = { 5, 17, 21 };
 			int[] expected = { 1, 2, 3 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -269,7 +269,7 @@ namespace Stats
 		{
 			double[] array = { 21, 17, 5 };
 			int[] expected = { 3, 2, 1 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -277,7 +277,7 @@ namespace Stats
 		{
 			double[] array = { 5, 21, 17 };
 			int[] expected = { 1, 3, 2 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -285,7 +285,7 @@ namespace Stats
 		{
 			double[] array = { 21, 5, 17 };
 			int[] expected = { 3, 1, 2 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -293,7 +293,7 @@ namespace Stats
 		{
 			double[] array = { 17, 21, 5 };
 			int[] expected = { 2, 3, 1 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
@@ -301,7 +301,7 @@ namespace Stats
 		{
 			double[] array = { 17, 5, 21 };
 			int[] expected = { 2, 1, 3 };
-			IList<int> actual = BasicStats.rank (array);
+			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 	}
