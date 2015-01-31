@@ -8,7 +8,6 @@ namespace Stats
 	public class Bootstrap<SampleType>
 	{
 		private Func<IList<SampleType>, double> getParameter;
-		private readonly Random rnd = new Random();
 
 		public Bootstrap (Func<IList<SampleType>, double> getParameter)
 		{
@@ -16,14 +15,18 @@ namespace Stats
 		}
 		public double[] simulate(IList<SampleType> data, int numSimulations)
 		{
+			simulate (data, numSimulations, new Random ());
+		}
+		public double[] simulate(IList<SampleType> data, int numSimulations, Random rnd)
+		{
 			double[] simulations = new double[numSimulations];
 			for (int i = 0; i < numSimulations; i++)
 			{
-				simulations[i] = getParameter(generateSample(data));
+				simulations[i] = getParameter(generateSample(data, rnd));
 			}
 			return simulations;
 		}
-		private SampleType[] generateSample(IList<SampleType> d)
+		private SampleType[] generateSample(IList<SampleType> d, Random rnd)
 		{
 			SampleType[] newSample = new SampleType[d.Count];
 			for (int i = 0; i < d.Count; i++)
@@ -32,6 +35,7 @@ namespace Stats
 			}
 			return newSample;
 		}
+
 	}
 }
 
