@@ -78,7 +78,7 @@ namespace Stats
 			}
 			return sortedArray
 				.OrderBy (a => a.Index)
-				.Select (a => (double)a.Rank)
+				.Select (a => a.Rank)
 				.ToList ();
 		}
 		public static double spearman(ICollection<double> array)
