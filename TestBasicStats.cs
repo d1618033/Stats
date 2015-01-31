@@ -436,6 +436,15 @@ namespace Stats
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
+		[Test]
+		public void TestAverageRanks()
+		{
+			double[] array = { 5, 5, 17 };
+			double expected = 0.86602540378443849;
+			double actual = BasicStats.spearman (array, true);
+			Assert.AreEqual (expected, actual, 1e-15);
+		}
+
 	}
 }
 

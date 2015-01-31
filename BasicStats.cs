@@ -82,11 +82,11 @@ namespace Stats
 				.Select (a => a.Rank)
 				.ToList ();
 		}
-		public static double spearman(ICollection<double> array)
+		public static double spearman(ICollection<double> array, bool averageRanks = false)
 		{
 			if (array.Count == 1)
 				return 1;
-			return pearson (Array.ConvertAll(Enumerable.Range(1, array.Count).ToArray(), x => (double) x),  Array.ConvertAll(rank (array).ToArray(), x => (double) x));
+			return pearson (Array.ConvertAll(Enumerable.Range(1, array.Count).ToArray(), x => (double) x),  Array.ConvertAll(rank (array, averageRanks).ToArray(), x => (double) x));
 		}
 	}
 }
