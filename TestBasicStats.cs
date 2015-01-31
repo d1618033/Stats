@@ -11,7 +11,7 @@ namespace Stats
 		public void TestEmptyArrayReturnsNaN ()
 		{
 			double[] x = new double[0];
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.mean (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -19,7 +19,7 @@ namespace Stats
 		public void TestOneElementArrayReturnsThatElement()
 		{
 			double[] x = { 17 };
-			double expected = 17;
+			const double expected = 17;
 			double actual = BasicStats.mean (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -27,7 +27,7 @@ namespace Stats
 		public void TestDoubleMeanIsNotFloored()
 		{
 			double[] x = { 17,  2};
-			double expected = 9.5;
+			const double expected = 9.5;
 			double actual = BasicStats.mean (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -35,7 +35,7 @@ namespace Stats
 		public void TestWholeMean()
 		{
 			double[] x = { 17,  1};
-			double expected = 9.0;
+			const double expected = 9.0;
 			double actual = BasicStats.mean (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -43,7 +43,7 @@ namespace Stats
 		public void TestTenElements()
 		{
 			double[] x = {3.0, 4.0, 9.0, 4.0, 7.0, 1.0, 8.0, 4.0, 9.0, 10.0};
-			double expected = 5.9;
+			const double expected = 5.9;
 			double actual = BasicStats.mean (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -55,7 +55,7 @@ namespace Stats
 		public void TestVarianceOfEmptyReturnsNaN()
 		{
 			double[] x = { };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.variance (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -63,7 +63,7 @@ namespace Stats
 		public void TestVarOf1ElemReturnsNaN()
 		{
 			double[] x = {5};
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.variance (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -71,7 +71,7 @@ namespace Stats
 		public void TestVarOf2Elem()
 		{
 			double[] x = {5, 7};
-			double expected = 2;
+			const double expected = 2;
 			double actual = BasicStats.variance (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -79,7 +79,7 @@ namespace Stats
 		public void TestVarOf10Elem()
 		{
 			double[] x = {5.0, 7.0, 3.0, 2.0, 7.0, 8.0, 9.0, 10.0, 10.0, 7.0};
-			double expected = 7.511111111111112;
+			const double expected = 7.511111111111112;
 			double actual = BasicStats.variance (x);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -92,7 +92,7 @@ namespace Stats
 		public void TestStdOfEmptyReturnsNaN()
 		{
 			double[] x = { };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.std (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -100,7 +100,7 @@ namespace Stats
 		public void TestStdOf1ElemReturnsNaN()
 		{
 			double[] x = {5};
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.std (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -108,7 +108,7 @@ namespace Stats
 		public void TestStdOf2Elem()
 		{
 			double[] x = {5, 7};
-			double expected = Math.Sqrt(2);
+			const double expected = 1.4142135623730951;
 			double actual = BasicStats.std (x);
 			Assert.AreEqual (expected, actual);
 		}
@@ -116,7 +116,7 @@ namespace Stats
 		public void TestStdOf10Elem()
 		{
 			double[] x = {5.0, 7.0, 3.0, 2.0, 7.0, 8.0, 9.0, 10.0, 10.0, 7.0};
-			double expected = 2.7406406388125957;
+			const double expected = 2.7406406388125957;
 			double actual = BasicStats.std (x);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -139,7 +139,7 @@ namespace Stats
 		{
 			double[] array1 = { };
 			double[] array2 = { };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.cov (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
@@ -148,7 +148,7 @@ namespace Stats
 		{
 			double[] array1 = { 5 };
 			double[] array2 = { 6 };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.cov (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
@@ -157,7 +157,7 @@ namespace Stats
 		{
 			double[] array1 = { 1, 2 };
 			double[] array2 = { 1, 4 };
-			double expected = 1.5;
+			const double expected = 1.5;
 			double actual = BasicStats.cov (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
@@ -166,7 +166,7 @@ namespace Stats
 		{
 			double[] array1 = { 3.0, 9.0, 8.0, 9.0, 4.0, 3.0, 1.0, 10.0, 5.0, 1.0 };
 			double[] array2 = { 1.0, 8.0, 9.0, 10.0, 7.0, 7.0, 5.0, 7.0, 6.0, 9.0 };
-			double expected = 3.8111111111111122;
+			const double expected = 3.8111111111111122;
 			double actual = BasicStats.cov (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
@@ -189,7 +189,7 @@ namespace Stats
 		{
 			double[] array1 = { };
 			double[] array2 = { };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.pearson (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
@@ -198,7 +198,7 @@ namespace Stats
 		{
 			double[] array1 = { 5 };
 			double[] array2 = { 6 };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.pearson (array1, array2);
 			Assert.AreEqual (expected, actual);
 		}
@@ -207,7 +207,7 @@ namespace Stats
 		{
 			double[] array1 = { 1, 2 };
 			double[] array2 = { 1, 4 };
-			double expected = 1;
+			const double expected = 1;
 			double actual = BasicStats.pearson (array1, array2);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -216,7 +216,7 @@ namespace Stats
 		{
 			double[] array1 = { 3.0, 9.0, 8.0, 9.0, 4.0, 3.0, 1.0, 10.0, 5.0, 1.0 };
 			double[] array2 = { 1.0, 8.0, 9.0, 10.0, 7.0, 7.0, 5.0, 7.0, 6.0, 9.0 };
-			double expected = 0.4338891405782417;
+			const double expected = 0.4338891405782417;
 			double actual = BasicStats.pearson (array1, array2);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -228,7 +228,7 @@ namespace Stats
 		public void TestSize0ReturnsSize0()
 		{
 			double[] array = { };
-			double expectedLength = 0;
+			const double expectedLength = 0;
 			double actualLength = BasicStats.rank (array).Count;
 			Assert.AreEqual (expectedLength, actualLength);
 		}
@@ -384,7 +384,7 @@ namespace Stats
 		public void TestSize0ReturnsNaN()
 		{
 			double[] array = { };
-			double expected = double.NaN;
+			const double expected = double.NaN;
 			double actual = BasicStats.spearman(array);
 			Assert.AreEqual(actual, expected);
 		}
@@ -392,7 +392,7 @@ namespace Stats
 		public void TestSize1Returns1()
 		{
 			double[] array = { 17 };
-			double expected = 1;
+			const double expected = 1;
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual);
 		}
@@ -400,7 +400,7 @@ namespace Stats
 		public void TestSize2DecreasingReturnsMinus1()
 		{
 			double[] array = { 17 , 5};
-			double expected = -1;
+			const double expected = -1;
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -408,7 +408,7 @@ namespace Stats
 		public void TestSize2IncreasingReturns1()
 		{
 			double[] array = { 5, 17 };
-			double expected = 1;
+			const double expected = 1;
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -416,7 +416,7 @@ namespace Stats
 		public void TestSize3IncreasingReturns1()
 		{
 			double[] array = { 5, 17, 21 };
-			double expected = 1;
+			const double expected = 1;
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -424,7 +424,7 @@ namespace Stats
 		public void TestSize3DecreasingReturnsMinus1()
 		{
 			double[] array = { 21, 17, 5 };
-			double expected = -1;
+			const double expected = -1;
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -432,7 +432,7 @@ namespace Stats
 		public void TestSize3General()
 		{
 			double[] array = { 5, 21, 17 };
-			double expected = 0.5;
+			const double expected = 0.5;
 			double actual = BasicStats.spearman (array);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
@@ -440,7 +440,7 @@ namespace Stats
 		public void TestAverageRanks()
 		{
 			double[] array = { 5, 5, 17 };
-			double expected = 0.86602540378443849;
+			const double expected = 0.86602540378443849;
 			double actual = BasicStats.spearman (array, true);
 			Assert.AreEqual (expected, actual, 1e-15);
 		}
