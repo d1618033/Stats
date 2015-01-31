@@ -15,7 +15,7 @@ namespace Stats
 		}
 		public double[] simulate(IList<SampleType> data, int numSimulations)
 		{
-			simulate (data, numSimulations, new Random ());
+			return simulate (data, numSimulations, new Random ());
 		}
 		public double[] simulate(IList<SampleType> data, int numSimulations, Random rnd)
 		{

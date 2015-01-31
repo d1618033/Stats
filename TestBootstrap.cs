@@ -8,7 +8,7 @@ namespace Stats
 	{
 		private Bootstrap<double> b;
 
-		[TestFixtureSetUp]
+		[SetUp]
 		public void setUp()
 		{
 			b = new Bootstrap<double> (BasicStats.mean);
@@ -21,9 +21,20 @@ namespace Stats
 			const int numSimulations = 100;
 			double[] result = b.simulate (data, numSimulations);
 			foreach (double r in result)
-				Assert.AreEqual (r, 17);
+				Assert.AreEqual (17, r);
 		}
 
+		[Test]
+		public void TestTwoDataPoints()
+		{
+			double[] data = { 17 , 10};
+			const int numSimulations = 4;
+			MockRandom rng = new MockRandom ();
+			rng.Seeds = new int[] { 0, 0, 0, 1, 1, 0, 1, 1 };
+			double[] result = b.simulate (data, numSimulations, rng);
+			double[] expected = { 17, 13.5, 13.5, 10 };
+			Assert.AreEqual (expected, result);
+		}
 			
 	}
 }

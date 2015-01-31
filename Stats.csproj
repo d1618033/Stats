@@ -35,6 +35,8 @@
     <Compile Include="TestBasicStats.cs" />
     <Compile Include="Bootstrap.cs" />
     <Compile Include="TestBootstrap.cs" />
+    <Compile Include="MockRandom.cs" />
+    <Compile Include="TestMockRandom.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
