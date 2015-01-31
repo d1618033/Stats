@@ -65,11 +65,12 @@ namespace Stats
 		}
 		public static ICollection<double> rank(ICollection<double> array, bool averageRanks = false)
 		{
-			ICollection<RankElem> sortedArray = array
-				.Select ((a, i) => new {Elem = a, Index = i})
+			List<RankElem> sortedArray = array
+				.Select ((a, i) => new RankElem(0, a, i))
 				.OrderBy (a => a.Elem)
-				.Select ((a, i) => new RankElem(i+1, a.Elem, a.Index))
 				.ToList();
+			for (int i = 0; i < sortedArray.Count; i++)
+				sortedArray[i].Rank = i + 1;
 			if (averageRanks) {
 				sortedArray = sortedArray
 					.GroupBy (a => a.Elem)
