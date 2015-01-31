@@ -130,7 +130,7 @@ namespace Stats
 		{
 			double[] array1 = { 1, 2 };
 			double[] array2 = { 3, 4, 5 };
-			Assert.Throws (typeof(System.ArgumentException), delegate {
+			Assert.Throws (typeof(ArgumentException), delegate {
 				BasicStats.cov(array1, array2);
 			});
 		}
@@ -180,7 +180,7 @@ namespace Stats
 		{
 			double[] array1 = { 1, 2 };
 			double[] array2 = { 3, 4, 5 };
-			Assert.Throws (typeof(System.ArgumentException), delegate {
+			Assert.Throws (typeof(ArgumentException), delegate {
 				BasicStats.pearson(array1, array2);
 			});
 		}
