@@ -65,7 +65,7 @@ namespace Stats
 		}
 		public static ICollection<double> rank(ICollection<double> array, bool averageRanks = false)
 		{
-			var sortedArray = array
+			ICollection<RankElem> sortedArray = array
 				.Select ((a, i) => new {Elem = a, Index = i})
 				.OrderBy (a => a.Elem)
 				.Select ((a, i) => new RankElem(i+1, a.Elem, a.Index))
