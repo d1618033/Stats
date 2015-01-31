@@ -228,100 +228,154 @@ namespace Stats
 		public void TestSize0ReturnsSize0()
 		{
 			double[] array = { };
-			int expectedLength = 0;
-			int actualLength = BasicStats.rank (array).Count;
+			double expectedLength = 0;
+			double actualLength = BasicStats.rank (array).Count;
 			Assert.AreEqual (expectedLength, actualLength);
 		}
 		[Test]
 		public void TestSize1Returns1()
 		{
 			double[] array = { 17 };
-			int[] expected = { 1 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 1 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize2Decreasing()
 		{
 			double[] array = { 17 , 5};
-			int[] expected = { 2, 1 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 2, 1 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize2Increasing()
 		{
 			double[] array = { 5, 17 };
-			int[] expected = { 1, 2 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 1, 2 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize3Increasing()
 		{
 			double[] array = { 5, 17, 21 };
-			int[] expected = { 1, 2, 3 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 1, 2, 3 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize3Decreasing()
 		{
 			double[] array = { 21, 17, 5 };
-			int[] expected = { 3, 2, 1 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 3, 2, 1 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize3Perms1()
 		{
 			double[] array = { 5, 21, 17 };
-			int[] expected = { 1, 3, 2 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 1, 3, 2 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize3Perms2()
 		{
 			double[] array = { 21, 5, 17 };
-			int[] expected = { 3, 1, 2 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 3, 1, 2 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize3Perms3()
 		{
 			double[] array = { 17, 21, 5 };
-			int[] expected = { 2, 3, 1 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 2, 3, 1 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestSize3Perms4()
 		{
 			double[] array = { 17, 5, 21 };
-			int[] expected = { 2, 1, 3 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 2, 1, 3 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestTwoTheSame()
 		{
 			double[] array = { 17, 5, 21, 17 };
-			int[] expected = { 2, 1, 4, 3 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 2, 1, 4, 3 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
 		[Test]
 		public void TestAllTheSame()
 		{
 			double[] array = { 17, 17, 17, 17 };
-			int[] expected = { 1, 2, 3, 4 };
-			ICollection<int> actual = BasicStats.rank (array);
+			double[] expected = { 1, 2, 3, 4 };
+			ICollection<double> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
-
-
+		[Test]
+		public void TestOneElemAverageRanks()
+		{
+			double[] array = { 17 };
+			double[] expected = { 1 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestTwoElemDifferentAverageRanks()
+		{
+			double[] array = { 17 , 5};
+			double[] expected = { 2, 1 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestTwoElemSameAverageRanks()
+		{
+			double[] array = { 17 , 17};
+			double[] expected = { 1.5, 1.5 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestThreeElemSameAverageRanks()
+		{
+			double[] array = { 17 , 17, 17};
+			double[] expected = { 2, 2, 2 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestThreeElemTwoSameHighestAverageRanks()
+		{
+			double[] array = { 17 , 17, 1};
+			double[] expected = { 2.5, 2.5, 1 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestThreeElemTwoSameLowestAverageRanks()
+		{
+			double[] array = { 17 , 1, 1};
+			double[] expected = { 3, 1.5, 1.5 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestThreeElemNoneSameAverageRanks()
+		{
+			double[] array = { 17 , 5, 1};
+			double[] expected = { 3, 2, 1 };
+			ICollection<double> actual = BasicStats.rank (array, true);
+			Assert.AreEqual (expected, actual);
+		}
 	}
 	[TestFixture]
 	public class TestSpearman

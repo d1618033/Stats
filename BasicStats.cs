@@ -51,14 +51,34 @@ namespace Stats
 			}
 			return cov(array1, array2) / (std(array1) * std(array2));
 		}
-		public static ICollection<int> rank(ICollection<double> array)
+		private class RankElem
 		{
-			return array
+			public RankElem(double Rank, double Elem, int Index)
+			{
+				this.Rank = Rank;
+				this.Elem = Elem;
+				this.Index = Index;
+			}
+			public double Rank{get; set;}
+			public double Elem{get; set;}
+			public int Index{ get; set;}
+		}
+		public static ICollection<double> rank(ICollection<double> array, bool averageRanks = false)
+		{
+			var sortedArray = array
 				.Select ((a, i) => new {Elem = a, Index = i})
 				.OrderBy (a => a.Elem)
-				.Select ((a, i) => new {Rank = i + 1, Elem = a.Elem, Index = a.Index})
+				.Select ((a, i) => new RankElem(i+1, a.Elem, a.Index))
+				.ToList();
+			if (averageRanks) {
+				sortedArray = sortedArray
+					.GroupBy (a => a.Elem)
+					.SelectMany (g => g.Select (a => new RankElem(g.Average (ga => ga.Rank), a.Elem, a.Index)))
+					.ToList();
+			}
+			return sortedArray
 				.OrderBy (a => a.Index)
-				.Select (a => a.Rank)
+				.Select (a => (double)a.Rank)
 				.ToList ();
 		}
 		public static double spearman(ICollection<double> array)
