@@ -73,7 +73,8 @@ namespace Stats
 			if (averageRanks) {
 				sortedArray = sortedArray
 					.GroupBy (a => a.Elem)
-					.SelectMany (g => g.Select (a => new RankElem(g.Average (ga => ga.Rank), a.Elem, a.Index)))
+					.SelectMany (g => {double m = g.Average (ga => ga.Rank); 
+						return g.Select (a => new RankElem(m, a.Elem, a.Index));})
 					.ToList();
 			}
 			return sortedArray
