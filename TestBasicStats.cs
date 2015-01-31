@@ -304,6 +304,24 @@ namespace Stats
 			ICollection<int> actual = BasicStats.rank (array);
 			Assert.AreEqual (expected, actual);
 		}
+		[Test]
+		public void TestTwoTheSame()
+		{
+			double[] array = { 17, 5, 21, 17 };
+			int[] expected = { 2, 1, 4, 3 };
+			ICollection<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+		[Test]
+		public void TestAllTheSame()
+		{
+			double[] array = { 17, 17, 17, 17 };
+			int[] expected = { 1, 2, 3, 4 };
+			ICollection<int> actual = BasicStats.rank (array);
+			Assert.AreEqual (expected, actual);
+		}
+
+
 	}
 	[TestFixture]
 	public class TestSpearman

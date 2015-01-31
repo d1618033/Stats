@@ -38,6 +38,7 @@ namespace Stats
 			double res = array1.Zip(array2, (a1, a2) => (a1 - m1) * (a2 - m2)).Sum() / (array1.Count() - 1);
 			return res;
 		}
+
 		public static double pearson(ICollection<double> array1, ICollection<double> array2)
 		{
 			if (array1.Count() != array2.Count())
