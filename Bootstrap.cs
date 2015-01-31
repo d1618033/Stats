@@ -1,0 +1,37 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+
+namespace Stats
+{
+	public class Bootstrap<SampleType>
+	{
+		private Func<IList<SampleType>, double> getParameter;
+		private readonly Random rnd = new Random();
+
+		public Bootstrap (Func<IList<SampleType>, double> getParameter)
+		{
+			this.getParameter = getParameter;
+		}
+		public double[] simulate(IList<SampleType> data, int numSimulations)
+		{
+			double[] simulations = new double[numSimulations];
+			for (int i = 0; i < numSimulations; i++)
+			{
+				simulations[i] = getParameter(generateSample(data));
+			}
+			return simulations;
+		}
+		private SampleType[] generateSample(IList<SampleType> d)
+		{
+			SampleType[] newSample = new SampleType[d.Count];
+			for (int i = 0; i < d.Count; i++)
+			{
+				newSample[i] = d [rnd.Next (0, d.Count)];
+			}
+			return newSample;
+		}
+	}
+}
+

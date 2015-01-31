@@ -33,6 +33,8 @@
   <ItemGroup>
     <Compile Include="BasicStats.cs" />
     <Compile Include="TestBasicStats.cs" />
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="TestBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
