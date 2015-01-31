@@ -77,10 +77,10 @@ namespace Stats
 						return g.Select (a => new RankElem(m, a.Elem, a.Index));})
 					.ToList();
 			}
-			return sortedArray
-				.OrderBy (a => a.Index)
-				.Select (a => a.Rank)
-				.ToList ();
+			double[] ret = new double[sortedArray.Count];
+			foreach (RankElem r in sortedArray)
+				ret [r.Index] = r.Rank;
+			return ret;
 		}
 		public static double spearman(ICollection<double> array, bool averageRanks = false)
 		{
