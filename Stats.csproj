@@ -41,6 +41,8 @@
     <Compile Include="IRandomVariable.cs" />
     <Compile Include="NormalRandomVariable.cs" />
     <Compile Include="TestNormalRandomVariable.cs" />
+    <Compile Include="TestRootFinder.cs" />
+    <Compile Include="RootFinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
