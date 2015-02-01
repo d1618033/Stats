@@ -24,6 +24,11 @@ namespace Stats
 		{
 			Assert.AreEqual(0.5, RootFinder.solve(x => x * 2 - 1, -10, 10, 1e-10), 1e-10);
 		}
+		[Test]
+		public void TestDefaultTol()
+		{
+			Assert.AreEqual(1, RootFinder.solve(x => x * x * x - 1, 0, 10), 1e-10);
+		}
 	}
 }
 
