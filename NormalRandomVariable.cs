@@ -25,7 +25,7 @@ namespace Stats
 
 		public double icdf (double p)
 		{
-			throw new NotImplementedException ();
+			return RootFinder.solve (x => cdf(x) - p, -10, 10);
 		}
 
 		#endregion

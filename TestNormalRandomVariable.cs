@@ -51,8 +51,34 @@ namespace Stats
 		[Test]
 		public void TestCDFMinus196StandardReturns025()
 		{
-			Assert.AreEqual (standard.cdf (-1.96), 0.0255, 0.001);
+			Assert.AreEqual (standard.cdf (1.96), 0.975, 0.001);
 		}
+		[Test]
+		public void TestiCDF05StandardReturns0()
+		{
+			Assert.AreEqual (standard.icdf (0.5), 0, 1e-10);
+		}
+		[Test]
+		public void TestiCDF95StandardReturns164()
+		{
+			Assert.AreEqual (standard.icdf (0.95), 1.64, 0.01);
+		}
+		[Test]
+		public void TestiCDF975StandardReturns196()
+		{
+			Assert.AreEqual (standard.icdf (0.975), 1.96, 0.01);
+		}
+		[Test]
+		public void TestiCDF05StandardReturnsMinus164()
+		{
+			Assert.AreEqual (standard.icdf (0.05), -1.64, 0.01);
+		}
+		[Test]
+		public void TestiCDF025StandardReturnsMinus196()
+		{
+			Assert.AreEqual (standard.icdf (0.025), -1.96, 0.01);
+		}
+
 
 	}
 }
