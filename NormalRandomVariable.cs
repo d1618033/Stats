@@ -25,8 +25,13 @@ namespace Stats
 
 		public double icdf (double p)
 		{
-			return RootFinder.solve (x => cdf(x) - p, -10, 10);
+			return icdf (p, 1e-3);
 		}
+		public double icdf (double p, double tol)
+		{
+			return RootFinder.solve (x => cdf(x) - p, tol: tol);
+		}
+
 
 		#endregion
 

@@ -56,7 +56,7 @@ namespace Stats
 		[Test]
 		public void TestiCDF05StandardReturns0()
 		{
-			Assert.AreEqual (standard.icdf (0.5), 0, 1e-10);
+			Assert.AreEqual (standard.icdf (0.5), 0, 1e-3);
 		}
 		[Test]
 		public void TestiCDF95StandardReturns164()
@@ -78,7 +78,11 @@ namespace Stats
 		{
 			Assert.AreEqual (standard.icdf (0.025), -1.96, 0.01);
 		}
-
+		[Test]
+		public void TestiCDFeM10StandardReturnsMinus196()
+		{
+			Assert.AreEqual (standard.icdf (1e-10, 0.0001), -6.36134, 0.0001);
+		}
 
 	}
 }
