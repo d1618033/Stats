@@ -43,6 +43,7 @@
     <Compile Include="TestNormalRandomVariable.cs" />
     <Compile Include="TestRootFinder.cs" />
     <Compile Include="RootFinder.cs" />
+    <Compile Include="TestConfidenceInterval.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
