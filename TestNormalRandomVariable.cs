@@ -7,10 +7,12 @@ namespace Stats
 	public class TestNormalRandomVariable
 	{
 		private NormalRandomVariable standard;
+		private NormalRandomVariable nonStandard;
 		[SetUp]
 		public void setUp()
 		{
 			standard = new NormalRandomVariable ();
+			nonStandard = new NormalRandomVariable (3, 2);
 		}
 		[Test]
 		public void TestDefaultIsStandard ()
@@ -86,7 +88,12 @@ namespace Stats
 		[Test]
 		public void TestMean3Std2CDF692Returns975 ()
 		{
-			Assert.AreEqual ((new NormalRandomVariable(3, 2)).cdf (6.92), 0.975, 0.001);
+			Assert.AreEqual (nonStandard.cdf (6.92), 0.975, 0.001);
+		}
+		[Test]
+		public void TestiCDF025Mean3Std2ReturnsMinus092()
+		{
+			Assert.AreEqual (nonStandard.icdf (0.025), -0.9199999999999999, 0.01);
 		}
 	}
 }
