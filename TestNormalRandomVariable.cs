@@ -83,7 +83,11 @@ namespace Stats
 		{
 			Assert.AreEqual (standard.icdf (1e-10, 0.0001), -6.36134, 0.0001);
 		}
-
+		[Test]
+		public void TestMean3Std2CDF692Returns975 ()
+		{
+			Assert.AreEqual ((new NormalRandomVariable(3, 2)).cdf (6.92), 0.975, 0.001);
+		}
 	}
 }
 

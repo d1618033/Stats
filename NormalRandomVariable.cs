@@ -8,6 +8,7 @@ namespace Stats
 
 		public double cdf (double x)
 		{
+			x = (x - Mu) / Sigma;
 			//algorithm taken from: http://en.wikipedia.org/wiki/Normal_distribution
 			double value=x, sum=x;
 			for (int i = 1; i <= 100; i++) 
