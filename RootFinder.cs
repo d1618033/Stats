@@ -4,8 +4,25 @@ namespace Stats
 {
 	public static class RootFinder
 	{
-		public static double solve(Func<double, double> f, double a, double b, double tol)
+		public static double solve(Func<double, double> f, double a=double.NaN, double b=double.NaN, double tol=1e-10)
 		{
+			bool fix = false;
+			if (double.IsNaN (a)) {
+				a = -10;
+				fix = true;
+			}
+			if (double.IsNaN (b)) {
+				b = 10;
+				fix = true;
+			}
+			if (fix) {
+				while (f(a) * f(b) > 0)
+				{
+					a *= 2;
+					b *= 2;
+				}
+			}
+
 			double fa = f (a);
 			double fb = f (b);
 			if (fa * fb > 0)
@@ -25,6 +42,7 @@ namespace Stats
 				}
 			};
 		}
+
 	}
 }
 
