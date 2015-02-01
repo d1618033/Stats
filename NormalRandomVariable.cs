@@ -8,7 +8,14 @@ namespace Stats
 
 		public double cdf (double x)
 		{
-			throw new NotImplementedException ();
+			//algorithm taken from: http://en.wikipedia.org/wiki/Normal_distribution
+			double value=x, sum=x;
+			for (int i = 1; i <= 100; i++) 
+			{
+				value *= x * x / (2 * i + 1);
+				sum += value;
+			}
+			return 0.5 + (sum / Math.Sqrt (2 * Math.PI)) * Math.Exp (-(x * x) / 2);
 		}
 
 		public double pdf (double x)
