@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Stats
 {
-	public class MockRandom: Random
+	internal class MockRandom: Random
 	{
 		private IEnumerator<int> seeds;
 
