@@ -19,11 +19,6 @@ namespace Stats
 			return 0.5 + (sum / Math.Sqrt (2 * Math.PI)) * Math.Exp (-(x * x) / 2);
 		}
 
-		public double pdf (double x)
-		{
-			throw new NotImplementedException ();
-		}
-
 		public double icdf (double p)
 		{
 			return icdf (p, 1e-3);
