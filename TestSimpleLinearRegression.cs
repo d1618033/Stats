@@ -49,6 +49,18 @@ namespace Stats
 			Assert.Throws (typeof(ArgumentException), () => slr.predict (10));
 		}
 
+		[Test]
+		public void TestSize10 ()
+		{
+			double[] x = { 10.0, 2.0, 2.0, 7.0, 2.0, 7.0, 4.0, 4.0, 5.0, 1.0 };
+			double[] y = { 3.0, 1.0, 5.0, 5.0, 6.0, 2.0, 3.0, 8.0, 6.0, 6.0 };
+			slr.fit (x, y);
+			double x0 = 17;
+			double expected = 1.9596774193548385;
+			Assert.AreEqual (expected, slr.predict (x0), 1e-10);
+
+		}
+
 	}
 }
 
