@@ -19,6 +19,14 @@ namespace Stats
 			double[] y = { 2, 3 };
 			Assert.Throws (typeof(ArgumentException), () => slr.fit (x, y));
 		}
+		[Test]
+		public void TestFitOfSize0ThrowsError ()
+		{
+			double[] x = {};
+			double[] y = {};
+			Assert.Throws (typeof(ArgumentException), () => slr.fit (x, y));
+		}
+
 	}
 }
 
