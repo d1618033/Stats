@@ -61,6 +61,13 @@ namespace Stats
 
 		}
 
+		[Test]
+		public void TestAllEqualXThrowsError()
+		{
+			double[] x = { 2, 2, 2, 2 };
+			double[] y = { 1, 2, 3, 4 };
+			Assert.Throws (typeof(ArgumentException), () => slr.fit (x, y));
+		}
 	}
 }
 
