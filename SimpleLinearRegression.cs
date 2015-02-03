@@ -17,7 +17,7 @@ namespace Stats
 		{
 			if (x.Count != y.Count)
 				throw new ArgumentException ("X and Y must be of the same size");
-			if (x.Count == 0)
+			if (x.Count <= 1)
 				throw new ArgumentException ("X and Y must not be empty");
 
 		}
