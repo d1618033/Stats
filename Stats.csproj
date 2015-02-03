@@ -47,6 +47,8 @@
     <Compile Include="ICurveFit.cs" />
     <Compile Include="TestSimpleLinearRegression.cs" />
     <Compile Include="SimpleLinearRegression.cs" />
+    <Compile Include="LinearInterpolation.cs" />
+    <Compile Include="TestLinearInterpolation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
