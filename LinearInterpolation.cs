@@ -24,6 +24,10 @@ namespace Stats
 				throw new ArgumentException ("X and Y must be of the same size");
 			if (x.Count == 0)
 				throw new ArgumentException ("X and Y must not be empty");
+			x = x.Distinct().ToList();
+			y = y.Distinct().ToList();
+			if (x.Count != y.Count)
+				throw new ArgumentException ("When X is all the same value, Y must also be all the same");
 			this.x = x;
 			this.y = y;
 			fitWasRun = true;

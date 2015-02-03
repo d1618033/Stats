@@ -71,7 +71,30 @@ namespace Stats
 			Assert.AreEqual (16, li.predict (8), 1e-10);
 
 		}
-
+		[Test]
+		public void TestSameXValueDifferentYValuesThrowsError()
+		{
+			double[] x = {5, 5};
+			double[] y = {7, 19};
+			Assert.Throws (typeof(ArgumentException), () => li.fit (x, y));
+		}
+		[Test]
+		public void TestSameXValueSameYValuesReturnsTheSameYForX()
+		{
+			double[] x = {5, 5};
+			double[] y = {7, 7};
+			li.fit (x, y);
+			Assert.AreEqual(7, li.predict(5));
+		}
+		[Test]
+		public void TestSameXValueSameYValuesThrowsErrorForOutOfBoundsX()
+		{
+			double[] x = {5, 5};
+			double[] y = {7, 7};
+			li.fit (x, y);
+			Assert.Throws (typeof(ArgumentException), () => li.predict(6));
+			Assert.Throws (typeof(ArgumentException), () => li.predict(4));
+		}
 	}
 }
 
