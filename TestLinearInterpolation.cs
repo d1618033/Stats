@@ -95,6 +95,57 @@ namespace Stats
 			Assert.Throws (typeof(ArgumentException), () => li.predict(6));
 			Assert.Throws (typeof(ArgumentException), () => li.predict(4));
 		}
+		[Test]
+		public void TestThreePointsAtXPointsReturnY()
+		{
+			double[] x = {5, 6, 11};
+			double[] y = {7, 100, 300};
+			li.fit (x, y);
+			for (int i=0; i<x.Length; i++)
+				Assert.AreEqual (y [i], li.predict (x [i]), 1e-10);
+		}
+		[Test]
+		public void TestThreePointsThrowsErrorForOutOfBoundsX()
+		{
+			double[] x = {5, 6, 11};
+			double[] y = {7, 100, 300};
+			li.fit (x, y);
+			Assert.Throws (typeof(ArgumentException), () => li.predict(4));
+			Assert.Throws (typeof(ArgumentException), () => li.predict(12));
+		}
+		[Test]
+		public void TestThreePointsDuplicatesXNoDuplicatesY()
+		{
+			double[] x = {5, 5, 11};
+			double[] y = {7, 100, 300};
+			Assert.Throws (typeof(ArgumentException), () => li.fit (x, y));
+		}
+		[Test]
+		public void TestThreePointsDuplicatesXDuplicatesYButNotInPlaceWhereDuplicatesInX()
+		{
+			double[] x = {5, 5, 11};
+			double[] y = {7, 100, 100};
+			Assert.Throws (typeof(ArgumentException), () => li.fit (x, y));
+		}
+		[Test]
+		public void TestThreePointsDuplicatesXDuplicatesYtInPlaceWhereDuplicatesInXReturnsCorrectYForX()
+		{
+			double[] x = {5, 5, 11};
+			double[] y = {100, 100, 100};
+			li.fit (x, y);
+			for (int i=0; i<x.Length; i++)
+				Assert.AreEqual (y [i], li.predict (x [i]), 1e-10);
+		}
+		[Test]
+		public void TestUnsortedX()
+		{
+			double[] x = {11, 5, 3};
+			double[] y = {100, 17, 1000};
+			li.fit (x, y);
+			for (int i=0; i<x.Length; i++)
+				Assert.AreEqual (y [i], li.predict (x [i]), 1e-10);
+		}
 	}
 }
+
 
