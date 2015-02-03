@@ -5,6 +5,8 @@ namespace Stats
 {
 	public class SimpleLinearRegression: ICurveFit
 	{
+		private double intercept;
+		private double slope;
 
 		public SimpleLinearRegression ()
 		{
@@ -19,12 +21,14 @@ namespace Stats
 				throw new ArgumentException ("X and Y must be of the same size");
 			if (x.Count <= 1)
 				throw new ArgumentException ("X and Y must not be empty");
+			slope = BasicStats.cov (x, y) / BasicStats.variance (x);
+			intercept = BasicStats.mean (y) - BasicStats.mean (x) * slope;
 
 		}
 
 		public double predict (double x0)
 		{
-			throw new NotImplementedException ();
+			return slope * x0 + intercept;
 		}
 
 		#endregion

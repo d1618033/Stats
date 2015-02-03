@@ -33,6 +33,17 @@ namespace Stats
 			double[] y = {7};
 			Assert.Throws (typeof(ArgumentException), () => slr.fit (x, y));
 		}
+		[Test]
+		public void TestFitOfSize2ReturnsSamePredict ()
+		{
+			double[] x = {5, 6};
+			double[] y = {7, 100};
+			slr.fit (x, y);
+			for (int i=0; i<x.Length; i++)
+				Assert.AreEqual (y [i], slr.predict (x [i]), 1e-10);
+
+		}
+
 	}
 }
 
