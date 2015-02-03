@@ -22,7 +22,7 @@ namespace Stats
 
 		}
 
-		public void predict (double x0)
+		public double predict (double x0)
 		{
 			throw new NotImplementedException ();
 		}
