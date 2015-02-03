@@ -44,6 +44,9 @@
     <Compile Include="TestRootFinder.cs" />
     <Compile Include="RootFinder.cs" />
     <Compile Include="TestConfidenceInterval.cs" />
+    <Compile Include="ICurveFit.cs" />
+    <Compile Include="TestSimpleLinearRegression.cs" />
+    <Compile Include="SimpleLinearRegression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
