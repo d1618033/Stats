@@ -43,6 +43,11 @@ namespace Stats
 				Assert.AreEqual (y [i], slr.predict (x [i]), 1e-10);
 
 		}
+		[Test]
+		public void TestCallingPredictBeforeFitThrowsError ()
+		{
+			Assert.Throws (typeof(ArgumentException), () => slr.predict (10));
+		}
 
 	}
 }

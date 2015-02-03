@@ -7,10 +7,11 @@ namespace Stats
 	{
 		private double intercept;
 		private double slope;
+		private bool fitWasRun;
 
 		public SimpleLinearRegression ()
 		{
-
+			fitWasRun = false;
 		}
 
 		#region ICurveFit implementation
@@ -23,12 +24,15 @@ namespace Stats
 				throw new ArgumentException ("X and Y must not be empty");
 			slope = BasicStats.cov (x, y) / BasicStats.variance (x);
 			intercept = BasicStats.mean (y) - BasicStats.mean (x) * slope;
-
+			fitWasRun = true;
 		}
 
 		public double predict (double x0)
 		{
+			if (!fitWasRun)
+				throw new ArgumentException ("Fit must be run before predict");
 			return slope * x0 + intercept;
+
 		}
 
 		#endregion
