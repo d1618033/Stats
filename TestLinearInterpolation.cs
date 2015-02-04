@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq;
+using System.Collections.Generic;
+
 
 namespace Stats
 {
@@ -144,6 +147,24 @@ namespace Stats
 			li.fit (x, y);
 			for (int i=0; i<x.Length; i++)
 				Assert.AreEqual (y [i], li.predict (x [i]), 1e-10);
+		}
+		[Test]
+		public void TestRandomLinearArray()
+		{
+			Random rng = new Random ();
+			int size = rng.Next (1, 100);
+			List<double> x = new List<double>();
+			for (int i = 0; i < size; i++)
+				x.Add(rng.Next (1, 1000));
+			x = x.Distinct ().ToList ();
+			double a = rng.NextDouble () * rng.Next(1, 1000);
+			double b = rng.NextDouble () * rng.Next(1, 1000);
+			List<double> y = x.Select(X => a * X + b).ToList();
+			li.fit (x, y);
+			for (int i=0; i<x.Count; i++)
+				Assert.AreEqual (y [i], li.predict (x [i]), 1e-10);
+			for (double i=x.Min(); i<=x.Max(); i+=(x.Max()-x.Min())/100)
+				Assert.AreEqual (a * i + b, li.predict (i), 1e-10);
 		}
 	}
 }
