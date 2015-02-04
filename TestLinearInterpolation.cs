@@ -3,10 +3,10 @@ using System;
 
 namespace Stats
 {
-	[TestFixture ()]
+	[TestFixture]
 	public class TestLinearInterpolation
 	{
-		private LinearInterpolation li;
+		LinearInterpolation li;
 		[SetUp]
 		public void setUp()
 		{
