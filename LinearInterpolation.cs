@@ -60,14 +60,19 @@ namespace Stats
 					throw new ArgumentException ("x0 is out of bounds");
 				return this.y [0];
 			}
-			for (int i = 1; i < this.x.Count; i++) {
-				if (x [i - 1] <= x0 && x0 <= x [i]) {
-					SimpleLinearRegression slr = new SimpleLinearRegression ();
-					slr.fit (new double[]{ x [i - 1], x [i] }, new double[]{ y [i - 1], y [i] });
-					return slr.predict(x0);
-				}
+			int index = Array.BinarySearch (x.ToArray(), x0);
+			if (index < 0) {
+				int second = -index-1;
+				if (second == 0 || second >= x.Count)
+					throw new ArgumentException ("x0 is out of bounds");
+				int first = second - 1;
+
+				SimpleLinearRegression slr = new SimpleLinearRegression ();
+				slr.fit (new double[]{ x [first], x [second] }, new double[]{ y [first], y [second] });
+				return slr.predict (x0);
+			} else {
+				return y [index];
 			}
-			throw new ArgumentException ("x0 is out of bounds");
 		}
 
 		#endregion
