@@ -75,7 +75,7 @@ namespace Stats
 				sortedArray = sortedArray
 					.GroupBy (a => a.Elem)
 					.SelectMany (g => {double m = g.Average (ga => ga.Rank); 
-									   return g.Select (a => new RankElem(m, a.Elem, a.Index));})
+						return g.Select (a => {a.Rank = m; return a;});})
 					.ToArray();
 			}
 			double[] ret = new double[sortedArray.Length];
