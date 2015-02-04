@@ -27,7 +27,7 @@ namespace Stats
 		{
 			if (array1.Count() != array2.Count())
 			{
-				throw new System.ArgumentException ("Arrays must be of equal size");
+				throw new ArgumentException ("Arrays must be of equal size");
 			}
 			if (array1.Count() <= 1) 
 			{
@@ -43,7 +43,7 @@ namespace Stats
 		{
 			if (array1.Count() != array2.Count())
 			{
-				throw new System.ArgumentException ("Arrays must be of equal size");
+				throw new ArgumentException ("Arrays must be of equal size");
 			}
 			if (array1.Count() <= 1) 
 			{
@@ -51,7 +51,7 @@ namespace Stats
 			}
 			return cov(array1, array2) / (std(array1) * std(array2));
 		}
-		private class RankElem
+		class RankElem
 		{
 			public RankElem(double Rank, double Elem, int Index)
 			{
@@ -78,16 +78,14 @@ namespace Stats
 						return g.Select (a => {a.Rank = m; return a;});})
 					.ToArray();
 			}
-			double[] ret = new double[sortedArray.Length];
+			var ret = new double[sortedArray.Length];
 			foreach (RankElem r in sortedArray)
 				ret [r.Index] = r.Rank;
 			return ret;
 		}
 		public static double spearman(ICollection<double> array, bool averageRanks = false)
 		{
-			if (array.Count == 1)
-				return 1;
-			return pearson (Array.ConvertAll(Enumerable.Range(1, array.Count).ToArray(), x => (double) x),  Array.ConvertAll(rank (array, averageRanks).ToArray(), x => (double) x));
+			return (array.Count == 1) ? 1 : pearson (Array.ConvertAll(Enumerable.Range(1, array.Count).ToArray(), x => (double) x),  rank (array, averageRanks).ToArray());
 		}
 	}
 }
