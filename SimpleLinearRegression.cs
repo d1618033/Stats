@@ -26,8 +26,13 @@ namespace Stats
 				throw new ArgumentException ("X and Y's size must be greater than 1");
 			if (x.Distinct().Count() == 1)
 				throw new ArgumentException ("Multicollinearity: X must not be all the same value");
-			slope = BasicStats.cov (x, y) / BasicStats.variance (x);
-			intercept = BasicStats.mean (y) - BasicStats.mean (x) * slope;
+			if (x.Count == 2) {
+				slope = (y [1] - y [0]) / (x [1] - x [0]);
+				intercept = y [0] - slope * x [0];
+			} else {
+				slope = BasicStats.cov (x, y) / BasicStats.variance (x);
+				intercept = BasicStats.mean (y) - BasicStats.mean (x) * slope;
+			}
 			fitWasRun = true;
 		}
 
