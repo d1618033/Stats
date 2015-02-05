@@ -50,6 +50,8 @@
     <Compile Include="TestLinearInterpolation.cs" />
     <Compile Include="IConfidenceInterval.cs" />
     <Compile Include="TestSymmetricConfidenceInterval.cs" />
+    <Compile Include="PolynomialInterpolation.cs" />
+    <Compile Include="TestPolynomialInterpolation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">

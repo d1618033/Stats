@@ -9,6 +9,7 @@ namespace Stats
 	{
 		private IList<double> x;
 		private IList<double> y;
+		private IList<SimpleLinearRegression> slrs;
 		private bool fitWasRun;
 
 		public LinearInterpolation ()
@@ -33,6 +34,7 @@ namespace Stats
 			if (x.Count == 0)
 				throw new ArgumentException ("X and Y must not be empty");
 			fixDuplicates (x, y);
+			slrs = new SimpleLinearRegression[this.x.Count];
 			fitWasRun = true;
 		}
 		private void fixDuplicates(IList<double> x, IList<double> y)
@@ -50,7 +52,17 @@ namespace Stats
 			}
 			this.x = newData.Select (p => p.x).ToList();
 			this.y = newData.Select (p => p.y).ToList();
+
 		}
+		private SimpleLinearRegression getFitter(int i)
+		{
+			if (slrs [i] == null){
+				slrs [i] = new SimpleLinearRegression ();
+				slrs [i].fit (new double[]{ this.x [i], this.x [i+1] }, new double[]{ this.y [i], this.y [i+1] });
+			}
+			return slrs [i];
+		}
+
 		public double predict (double x0)
 		{
 			if (!fitWasRun)
@@ -62,14 +74,10 @@ namespace Stats
 			}
 			int index = Array.BinarySearch (x.ToArray(), x0);
 			if (index < 0) {
-				int second = -index-1;
-				if (second == 0 || second >= x.Count)
+				index = -index-1;
+				if (index == 0 || index >= x.Count)
 					throw new ArgumentException ("x0 is out of bounds");
-				int first = second - 1;
-
-				SimpleLinearRegression slr = new SimpleLinearRegression ();
-				slr.fit (new double[]{ x [first], x [second] }, new double[]{ y [first], y [second] });
-				return slr.predict (x0);
+				return getFitter(index-1).predict (x0);
 			} else {
 				return y [index];
 			}
