@@ -66,6 +66,9 @@ namespace Stats
 			if (index > 0)
 				return y [index];
 			else {
+				index = -index - 1;
+				if (index == 0 || index >= x.Count)
+					throw new ArgumentException ("x0 is out of bounds");
 				double y0 = 0;
 				for (int i = 0; i < x.Count; i++) {
 					double p = 1;
