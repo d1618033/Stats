@@ -164,7 +164,7 @@ namespace Stats
 			for (int i=0; i<x.Count; i++)
 				Assert.AreEqual (y [i], li.predict (x [i]), 1e-10);
 			for (double i=x.Min(); i<=x.Max(); i+=(x.Max()-x.Min())/100)
-				Assert.AreEqual (a * i + b, li.predict (i), 1e-10);
+				Assert.AreEqual (a * i + b, li.predict (i), 1e-5);
 		}
 	}
 }

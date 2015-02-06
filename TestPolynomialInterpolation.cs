@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Stats
 {
@@ -95,6 +98,62 @@ namespace Stats
 			Assert.Throws (typeof(ArgumentException), () => pi.predict(6));
 			Assert.Throws (typeof(ArgumentException), () => pi.predict(4));
 		}
+		[Test]
+		public void TestOutOfBoundsSize2()
+		{
+			double[] x = { 1, 2};
+			double[] y = { -1, 4};
+			pi.fit (x, y);
+			Assert.Throws (typeof(ArgumentException), () => pi.predict (0));
+			Assert.Throws (typeof(ArgumentException), () => pi.predict (3));
+		}
+		[Test]
+		public void TestThreePoints()
+		{
+			double[] x = { 1, 2, 3};
+			double[] p = { 5, 3, 4 };
+			double[] y = x.Select (X => p[0] + p[1] * X + p[2] * X * X).ToArray();
+			pi.fit (x, y);
+			for (double x0=x.Min(); x0 <= x.Max(); x0+=(x.Max() - x.Min())/100)
+				Assert.AreEqual(p[0]+p[1]*x0+p[2]*x0*x0, pi.predict(x0), 1e-5);
+		}
+		[Test]
+		public void TestRandomLinearArraySameXYieldsSameY()
+		{
+			Random rng = new Random ();
+			int size = rng.Next (1, 100);
+			List<double> x = new List<double>();
+			List<double> y = new List<double>();
+			for (int i = 0; i < size; i++) {
+				x.Add (rng.Next (1, 1000));
+			}
+			x = x.Distinct ().ToList ();
+			y = x.Select (X => (double) rng.Next (1, 1000)).ToList();
+			pi.fit (x, y);
+			for (int i=0; i<x.Count; i++)
+				Assert.AreEqual (y [i], pi.predict (x [i]), 1e-10);
+		}
+		[Test]
+		public void TestRandomLinearArrayFitsPoly()
+		{
+			Random rng = new Random ();
+			int size = rng.Next (1, 10);
+			List<double> x = new List<double>();
+			List<double> y = new List<double>();
+			List<double> p = new List<double>();
+			for (int i = 0; i < size; i++) {
+				x.Add (rng.Next (1, 5));
+			}
+			x = x.Distinct ().ToList ();
+			p = x.Select(X => (double) rng.Next(1, 5)).ToList();
+			y = x.Select (X => p.Select((P, i) => P * Math.Pow(X, i)).Sum()).ToList();
+			pi.fit (x, y);
+			for (int i=0; i<x.Count; i++)
+				Assert.AreEqual (y [i], pi.predict (x [i]), 1e-10);
+			for (double x0=x.Min(); x0 <= x.Max(); x0+=(x.Max() - x.Min())/100)
+				Assert.AreEqual(p.Select((P, i) => P * Math.Pow(x0, i)).Sum(), pi.predict(x0), 1e-5);
+		}
 	}
 }
+
 
