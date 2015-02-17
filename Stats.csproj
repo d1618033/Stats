@@ -37,7 +37,7 @@
     <Compile Include="TestBootstrap.cs" />
     <Compile Include="MockRandom.cs" />
     <Compile Include="TestMockRandom.cs" />
-    <Compile Include="ConfidenceInterval.cs" />
+    <Compile Include="SymmetricConfidenceInterval.cs" />
     <Compile Include="IRandomVariable.cs" />
     <Compile Include="NormalRandomVariable.cs" />
     <Compile Include="TestNormalRandomVariable.cs" />
